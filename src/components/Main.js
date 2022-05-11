@@ -5,10 +5,10 @@ import {
   View,
   TextInput,
   TouchableHighlight,
-  StyleSheet,
   StatusBar,
   Alert,
 } from 'react-native';
+import {styles} from '../styles/mainStyles';
 
 const Main = () => {
   // Logical
@@ -31,6 +31,12 @@ const Main = () => {
     dimensions.splice(0, dimensions.length);
 
     setResult(cubicFeets);
+  };
+
+  const reseter = () => {
+    // Alert.alert('Hola');
+    setResult(0);
+    // long.clear();
   };
 
   // View
@@ -67,79 +73,17 @@ const Main = () => {
           keyboardType="numeric"
           placeholderTextColor="hsla(199, 10%, 58%, .3)"
         />
-        <TouchableHighlight style={styles.button} onPress={getResult}>
-          <Text style={styles.btnText}>Calculate</Text>
-        </TouchableHighlight>
+        <View style={styles.btnGroup}>
+          <TouchableHighlight style={styles.btnReseter} onPress={reseter}>
+            <Text style={styles.btnTextReseter}>Reset</Text>
+          </TouchableHighlight>
+          <TouchableHighlight style={styles.button} onPress={getResult}>
+            <Text style={styles.btnText}>Calculate</Text>
+          </TouchableHighlight>
+        </View>
       </View>
     </View>
   );
 };
-
-// Styles
-const styles = StyleSheet.create({
-  wrapper: {
-    minHeight: '100%',
-    backgroundColor: 'hsl(0, 0%, 99%)',
-  },
-  header: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 100,
-    backgroundColor: 'hsl(207, 50%, 18%)',
-  },
-  title: {
-    color: 'hsl(199, 40%, 80%)',
-    fontSize: 35,
-    textTransform: 'uppercase',
-    fontWeight: 'bold',
-  },
-  subTitle: {
-    color: 'hsla(199, 40%, 80%, .9)',
-    fontSize: 12,
-    textTransform: 'uppercase',
-    fontWeight: 'bold',
-  },
-  convertion: {
-    color: 'hsl(207, 10%, 40%)',
-    fontSize: 18,
-    alignSelf: 'center',
-    paddingBottom: 16,
-  },
-  result: {
-    height: 100,
-    padding: 12,
-  },
-  resultText: {
-    textAlign: 'right',
-    fontSize: 40,
-    color: 'hsl(207, 10%, 40%)',
-  },
-  main: {
-    padding: 12,
-  },
-  input: {
-    height: 50,
-    marginBottom: 12,
-    borderWidth: 1,
-    padding: 10,
-    borderColor: 'transparent',
-    borderBottomColor: 'hsl(199, 25%, 80%)',
-    color: 'hsl(207, 10%, 40%)',
-    borderRadius: 7,
-    fontSize: 20,
-  },
-  button: {
-    height: 60,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'hsla(199, 20%, 85%, .9)',
-    padding: 10,
-    borderRadius: 7,
-  },
-  btnText: {
-    fontSize: 20,
-    color: 'hsl(207, 10%, 40%)',
-  },
-});
 
 export default Main;
