@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {
   Text,
   View,
@@ -10,18 +10,23 @@ import {
 } from 'react-native';
 import {styles} from '../styles/mainStyles';
 
-const Main = () => {
+const Main = props => {
   // Logical
-  const [long, setLong] = useState();
-  const [Width, setWidth] = useState();
-  const [height, setHeight] = useState();
+  const dimensionLong = useRef();
   const [result, setResult] = useState(0);
+  let [long, setLong] = useState();
+  let [Width, setWidth] = useState();
+  let [height, setHeight] = useState();
 
   const getResult = () => {
-    let dimensions = [long, Width, height];
+    long = Number(long);
+    Width = Number(Width);
+    height = Number(height);
+
+    let dimensions = [long, Width, height ];
     let cubicFeets = 0;
 
-    if (!long || !Width || !height) {Alert.alert('You should specify inches in each input to calculate the conversion.'); return;}
+    if (!long || !Width || !height) {Alert.alert('You should specify inches in each input... Use numerical value only.'); return;}
 
     const getCubitFeets = dimensions.reduce(
       (prevValue, currValue) => prevValue * currValue,
@@ -34,9 +39,12 @@ const Main = () => {
   };
 
   const reseter = () => {
-    // Alert.alert('Hola');
     setResult(0);
-    // long.clear();
+    setLong('');
+    setWidth('');
+    setHeight('');
+    dimensionLong.current.focus();
+    // dimensionLong.current.clear();
   };
 
   // View
@@ -53,31 +61,37 @@ const Main = () => {
       </View>
       <View style={styles.main}>
         <TextInput
+          ref={dimensionLong}
           style={styles.input}
           placeholder="Long"
-          onChangeText={val => setLong(Number(val))}
+          value={long}
+          onChangeText={val => setLong(val)}
           keyboardType="numeric"
           placeholderTextColor="hsla(199, 10%, 58%, .3)"
         />
         <TextInput
+          // ref={dimensionLong}
           style={styles.input}
           placeholder="Width"
-          onChangeText={val => setWidth(Number(val))}
+          value={Width}
+          onChangeText={val => setWidth(val)}
           keyboardType="numeric"
           placeholderTextColor="hsla(199, 10%, 58%, .3)"
         />
         <TextInput
+          // ref={dimensionLong}
           style={styles.input}
           placeholder="Height"
-          onChangeText={val => setHeight(Number(val))}
+          value={height}
+          onChangeText={val => setHeight(val)}
           keyboardType="numeric"
           placeholderTextColor="hsla(199, 10%, 58%, .3)"
         />
         <View style={styles.btnGroup}>
-          <TouchableHighlight style={styles.btnReseter} onPress={reseter}>
+          <TouchableHighlight style={styles.btnReseter} onPress={reseter} underlayColor="hsla(199, 35%, 85%, .5)">
             <Text style={styles.btnTextReseter}>Reset</Text>
           </TouchableHighlight>
-          <TouchableHighlight style={styles.button} onPress={getResult}>
+          <TouchableHighlight style={styles.button} onPress={getResult} underlayColor="hsla(199, 50%, 65%, .8)">
             <Text style={styles.btnText}>Calculate</Text>
           </TouchableHighlight>
         </View>
