@@ -12,7 +12,7 @@ import {styles} from '../styles/mainStyles';
 
 const Main = props => {
   // Logical
-  const dimensionLong = useRef();
+  const longValue = useRef();
   const [result, setResult] = useState(0);
   let [long, setLong] = useState();
   let [Width, setWidth] = useState();
@@ -43,8 +43,7 @@ const Main = props => {
     setLong('');
     setWidth('');
     setHeight('');
-    dimensionLong.current.focus();
-    // dimensionLong.current.clear();
+    longValue.current.focus();
   };
 
   // View
@@ -61,7 +60,8 @@ const Main = props => {
       </View>
       <View style={styles.main}>
         <TextInput
-          ref={dimensionLong}
+          autoFocus
+          ref={longValue}
           style={styles.input}
           placeholder="Long"
           value={long}
@@ -70,7 +70,6 @@ const Main = props => {
           placeholderTextColor="hsla(199, 10%, 58%, .3)"
         />
         <TextInput
-          // ref={dimensionLong}
           style={styles.input}
           placeholder="Width"
           value={Width}
@@ -79,7 +78,6 @@ const Main = props => {
           placeholderTextColor="hsla(199, 10%, 58%, .3)"
         />
         <TextInput
-          // ref={dimensionLong}
           style={styles.input}
           placeholder="Height"
           value={height}
