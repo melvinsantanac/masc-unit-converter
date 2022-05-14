@@ -62,3 +62,7 @@ buck-out/
 
 # Personal
 toDoList.md
+
+# By me after building app
+android/app/_build.gradle
+android/_gradle.properties
