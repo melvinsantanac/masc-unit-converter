@@ -78,6 +78,7 @@ body {
 .main__left-content h1 {
     font-weight: 400;
     margin-bottom: 10px;
+    color: hsl(206, 99%, 31%);
 }
 
 .main__left-content p {
@@ -86,7 +87,6 @@ body {
 
 .main__left-content em {
     color: hsl(206, 99%, 31%);
-    font-weight: 700;
 }
 
 .main__right-appImg {
