@@ -65,4 +65,5 @@ toDoList.md
 
 # By me after building app
 android/app/_build.gradle
+android/app/_proguard-rules.pro
 android/_gradle.properties
